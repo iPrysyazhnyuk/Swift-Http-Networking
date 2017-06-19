@@ -23,12 +23,17 @@ struct ResponseError: Error, LocalizedError {
 }
 
 extension Error {
+    
+    /// Convert error to specific format if it's ReponseError
+    ///
+    /// - Returns: Mappable object
     public func parse<T: Mappable>() -> T? {
         guard let backendError = self as? ResponseError,
             let value = backendError.value else { return nil }
         return T(JSON: value)
     }
     
+    /// First value of response dictionary if it's ResponseError otherwise - localizedDescription
     public var possibleError: String {
         guard let backendError = self as? ResponseError,
             let value = backendError.value,

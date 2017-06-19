@@ -49,35 +49,6 @@ public class HTTPRequest {
         ResponseError(message: "No response".localized)
     }
     
-    public static func makeWithDictionaryResponse(url: String,
-                                                   method: HTTPMethod,
-                                                   params: Parameters? = nil,
-                                                   encoding: ParameterEncoding? = nil,
-                                                   headers: [String: String]? = nil,
-                                                   onSuccess: ((_ dictionary: [String: Any], _ statusCode: Int) -> ())? = nil,
-                                                   onError: ((Error, _ statusCode: Int?) -> ())? = nil) {
-        // If we have image make multipart request
-        let hasImage = params?.contains(where: { $0.value is UIImage }) ?? false
-        if hasImage {
-            makeWithDictionaryResponseMultipart(url: url,
-                                                       method: method,
-                                                       params: params,
-                                                       headers: headers,
-                                                       onSuccess: onSuccess,
-                                                       onError: onError)
-        } else {
-            Alamofire.request(url,
-                              method: method,
-                              parameters: params,
-                              encoding: encoding ?? URLEncoding.default,
-                              headers: headers).responseJSON { (dataResponse) in
-                                handleAlamofireResponse(dataResponse: dataResponse, onSuccess: { (dictionary, statusCode) in
-                                    onSuccess?(dictionary, statusCode)
-                                }, onError: onError)
-            }
-        }
-    }
-    
     private static func makeWithDictionaryResponseMultipart(url: String,
                                                                    method: HTTPMethod,
                                                                    params: Parameters? = nil,
@@ -123,7 +94,17 @@ public class HTTPRequest {
         )
     }
     
-    private static func make<T: Mappable>(url: String,
+    /// Make request with Mappable object response
+    ///
+    /// - Parameters:
+    ///   - url: Full url
+    ///   - method: HTTP method
+    ///   - params: Parameters
+    ///   - encoding: Parameters encoding, if not specified use URLEncoding
+    ///   - headers: HTTP headers
+    ///   - onSuccess: Closure for success response
+    ///   - onError: Closure for error response
+    public static func make<T: Mappable>(url: String,
                                     method: HTTPMethod,
                                     params: Parameters? = nil,
                                     encoding: ParameterEncoding? = nil,
@@ -141,49 +122,83 @@ public class HTTPRequest {
         }, onError: onError)
     }
     
+    /// Make request with Dictionary response
+    ///
+    /// - Parameters:
+    ///   - url: Full url
+    ///   - method: HTTP method
+    ///   - params: Parameters
+    ///   - encoding: Parameters encoding, if not specified use URLEncoding
+    ///   - headers: HTTP headers
+    ///   - onSuccess: Closure for success response
+    ///   - onError: Closure for error response
+    public static func makeWithDictionaryResponse(url: String,
+                                                  method: HTTPMethod,
+                                                  params: Parameters? = nil,
+                                                  encoding: ParameterEncoding? = nil,
+                                                  headers: [String: String]? = nil,
+                                                  onSuccess: ((_ dictionary: [String: Any], _ statusCode: Int) -> ())? = nil,
+                                                  onError: ((Error, _ statusCode: Int?) -> ())? = nil) {
+        // If we have image make multipart request
+        let hasImage = params?.contains(where: { $0.value is UIImage }) ?? false
+        if hasImage {
+            makeWithDictionaryResponseMultipart(url: url,
+                                                method: method,
+                                                params: params,
+                                                headers: headers,
+                                                onSuccess: onSuccess,
+                                                onError: onError)
+        } else {
+            Alamofire.request(url,
+                              method: method,
+                              parameters: params,
+                              encoding: encoding ?? URLEncoding.default,
+                              headers: headers).responseJSON { (dataResponse) in
+                                handleAlamofireResponse(dataResponse: dataResponse, onSuccess: { (dictionary, statusCode) in
+                                    onSuccess?(dictionary, statusCode)
+                                }, onError: onError)
+            }
+        }
+    }
+    
+    /// Make request with Dictionary response
+    ///
+    /// - Parameters:
+    ///   - route: HTTP route
+    ///   - onSuccess: Closure for success response
+    ///   - onError: Closure for error response
     public static func makeWithDictionaryResponse(route: HTTPRouter,
                                                   onSuccess: ((_ dictionary: [String: Any], _ statusCode: Int) -> ())? = nil,
                                                   onError: ((Error, _ statusCode: Int?) -> ())? = nil) {
         makeWithDictionaryResponse(url: route.url, method: route.method, params: route.params, encoding: route.encoding, headers: route.headers, onSuccess: onSuccess, onError: onError)
     }
     
+    /// Make request with Mappable object response and HTTPRouter input
+    ///
+    /// - Parameters:
+    ///   - route: HTTP route
+    ///   - onSuccess: Closure for success response
+    ///   - onError: Closure for error response
     public static func make<T: Mappable>(route: HTTPRouter,
                             onSuccess: @escaping (T, _ statusCode: Int) -> (),
                             onError: ((Error, _ statusCode: Int?) -> ())? = nil) {
         make(url: route.url, method: route.method, params: route.params, encoding: route.encoding, headers: route.headers, onSuccess: onSuccess, onError: onError)
     }
     
-    public static func make<T: Mappable>(route: HTTPRouter,
-                            onSuccess: @escaping (T) -> (),
-                            onError: ((Error) -> ())? = nil) {
-        make(route: route, onSuccess: { (object, statusCode) in
-            onSuccess(object)
-        }) { (error, statusCode) in
-            onError?(error)
-        }
-    }
-    
-    public static func make<T: Mappable>(url: String,
-                            method: HTTPMethod,
-                            params: Parameters? = nil,
-                            encoding: ParameterEncoding? = nil,
-                            headers: [String: String]? = nil,
-                            onSuccess: @escaping (T) -> (),
-                            onError: ((Error) -> ())? = nil) {
-        make(url: url, method: method, params: params, encoding: encoding, headers: headers, onSuccess: { (object, statusCode) in
-            onSuccess(object)
-        }) { (error, statusCode) in
-            onError?(error)
-        }
-    }
-    
+    /// Maker request with ArrayPager response
+    ///
+    /// - Parameters:
+    ///   - nextPage: Full url of nextPage, nil by default
+    ///   - route: HTTP route
+    ///   - onSuccess: Closure for success response
+    ///   - onError: Closure for error response
     public static func makeArrayPagerRequest<T: Mappable>(nextPage: String? = nil,
                                       route: HTTPRouter,
-                                      onSuccess: @escaping ([T], Int, String?) -> (),
-                                      onError: @escaping (Error) -> ()) {
-        let successHandler: (ArrayPagerResponse<T>) -> () = {
-            (arrayPagerResponse: ArrayPagerResponse<T>) -> () in
-            onSuccess(arrayPagerResponse.results, arrayPagerResponse.count, arrayPagerResponse.nextPage)
+                                      onSuccess: @escaping (_ array: [T], _ count: Int, _ nextPage: String?, _ statusCode: Int) -> (),
+                                      onError: @escaping (Error, _ statusCode: Int?) -> ()) {
+        let successHandler: (ArrayPagerResponse<T>, Int) -> () = {
+            (arrayPagerResponse: ArrayPagerResponse<T>, statusCode: Int) -> () in
+            onSuccess(arrayPagerResponse.results, arrayPagerResponse.count, arrayPagerResponse.nextPage, statusCode)
         }
         if let nextPage = nextPage {
             make(url: nextPage, method: route.method, encoding: route.encoding, headers: route.headers, onSuccess: successHandler, onError: onError)

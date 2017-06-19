@@ -19,17 +19,17 @@ class ViewController: UIViewController {
     }
     
     private func getPosts() {
-        HTTPRequest.make(route: JSONPlaceholderRouter.posts, onSuccess: { (arrayResponse: ArrayResponse<Post>) in
+        HTTPRequest.make(route: JSONPlaceholderRouter.posts, onSuccess: { (arrayResponse: ArrayResponse<Post>, statusCode) in
             print(arrayResponse.array)
-        }) { (error) in
+        }) { (error, statusCode) in
             print(error.possibleError)
         }
     }
     
     private func getPost(id: Int) {
-        HTTPRequest.make(route: JSONPlaceholderRouter.post(id: id), onSuccess: { (post: Post) in
+        HTTPRequest.make(route: JSONPlaceholderRouter.post(id: id), onSuccess: { (post: Post, statusCode) in
             print(post)
-        }) { (error) in
+        }) { (error, statusCode) in
             print(error.possibleError)
         }
     }
