@@ -22,7 +22,7 @@ class ViewController: UIViewController {
         HTTPRequest.make(route: JSONPlaceholderRouter.posts, onSuccess: { (arrayResponse: ArrayResponse<Post>) in
             print(arrayResponse.array)
         }) { (error) in
-            print(error)
+            print(error.possibleError)
         }
     }
     
@@ -30,7 +30,7 @@ class ViewController: UIViewController {
         HTTPRequest.make(route: JSONPlaceholderRouter.post(id: id), onSuccess: { (post: Post) in
             print(post)
         }) { (error) in
-            print(error.localizedDescription)
+            print(error.possibleError)
         }
     }
 }
