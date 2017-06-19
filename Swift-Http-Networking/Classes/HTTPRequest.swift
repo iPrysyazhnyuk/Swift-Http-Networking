@@ -185,7 +185,7 @@ public class HTTPRequest {
         make(url: route.url, method: route.method, params: route.params, encoding: route.encoding, headers: route.headers, onSuccess: onSuccess, onError: onError)
     }
     
-    /// Maker request with ArrayPager response
+    /// Make request with ArrayPager response
     ///
     /// - Parameters:
     ///   - nextPage: Full url of nextPage, nil by default

@@ -14,7 +14,7 @@ enum JSONPlaceholderRouter: HTTPRouter {
     case posts
     case post(id: Int)
     
-    var baseUrl: String { return "https://jsonplaceholder.typicode.comq/" }
+    var baseUrl: String { return "https://jsonplaceholder.typicode.com/" }
     
     var endpoint: String {
         switch self {
