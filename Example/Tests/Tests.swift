@@ -1,6 +1,6 @@
 import UIKit
 import XCTest
-import Swift-Http-Networking
+import Swift_Http_Networking
 
 class Tests: XCTestCase {
     

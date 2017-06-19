@@ -7,18 +7,30 @@
 //
 
 import UIKit
+import Swift_Http_Networking
+import ObjectMapper
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        getPosts()
+        getPost(id: 1)
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    private func getPosts() {
+        HTTPRequest.makeWithDictionaryResponse(route: JSONPlaceholderRouter.posts, onSuccess: { (dict, statusCode) in
+            print(dict)
+        }) { (error, statusCode) in
+            print(error.localizedDescription)
+        }
     }
-
+    
+    private func getPost(id: Int) {
+        HTTPRequest.make(route: JSONPlaceholderRouter.post(id: id), onSuccess: { (post: Post) in
+            print(post)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
 }
-

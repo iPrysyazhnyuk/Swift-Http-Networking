@@ -15,6 +15,8 @@
 		607FACEC1AFB9204008FA782 /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACEB1AFB9204008FA782 /* Tests.swift */; };
 		8082F93F142F86D55BD7B6A2 /* Pods_Swift_Http_Networking_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 991F469E9F30DFBDC262F8EA /* Pods_Swift_Http_Networking_Tests.framework */; };
 		AF99769206D846C6EA8F4F74 /* Pods_Swift_Http_Networking_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1891886F83613E263E34496 /* Pods_Swift_Http_Networking_Example.framework */; };
+		E02A70DA1EF7C5D100809884 /* JSONPlaceholderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A70D91EF7C5D100809884 /* JSONPlaceholderRouter.swift */; };
+		E02A70DC1EF7DB6B00809884 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02A70DB1EF7DB6B00809884 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,8 +32,8 @@
 /* Begin PBXFileReference section */
 		026D1426D9D4FA06D4746DE8 /* Pods-Swift-Http-Networking_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-Http-Networking_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-Http-Networking_Tests/Pods-Swift-Http-Networking_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		144BD382D383406389FE3A65 /* Pods-Swift-Http-Networking_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-Http-Networking_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-Http-Networking_Example/Pods-Swift-Http-Networking_Example.release.xcconfig"; sourceTree = "<group>"; };
-		14667D843010F06E199DB196 /* Swift-Http-Networking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = "Swift-Http-Networking.podspec"; path = "../Swift-Http-Networking.podspec"; sourceTree = "<group>"; };
-		495DCF9349945E9E896FDDA7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		14667D843010F06E199DB196 /* Swift-Http-Networking.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = "Swift-Http-Networking.podspec"; path = "../Swift-Http-Networking.podspec"; sourceTree = "<group>"; };
+		495DCF9349945E9E896FDDA7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* Swift-Http-Networking_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-Http-Networking_Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACD51AFB9204008FA782 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -42,10 +44,12 @@
 		607FACE51AFB9204008FA782 /* Swift-Http-Networking_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swift-Http-Networking_Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		7FA1AFCE35B3034E82E0DBBB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		7FA1AFCE35B3034E82E0DBBB /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		85EC107CEC0B08F7BBCCE118 /* Pods-Swift-Http-Networking_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-Http-Networking_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-Http-Networking_Tests/Pods-Swift-Http-Networking_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		991F469E9F30DFBDC262F8EA /* Pods_Swift_Http_Networking_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift_Http_Networking_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C6C0124D0EB26305218ED6A0 /* Pods-Swift-Http-Networking_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-Http-Networking_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-Http-Networking_Example/Pods-Swift-Http-Networking_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		E02A70D91EF7C5D100809884 /* JSONPlaceholderRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONPlaceholderRouter.swift; sourceTree = "<group>"; };
+		E02A70DB1EF7DB6B00809884 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		E1891886F83613E263E34496 /* Pods_Swift_Http_Networking_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift_Http_Networking_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -95,6 +99,8 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				E02A70DB1EF7DB6B00809884 /* Post.swift */,
+				E02A70D91EF7C5D100809884 /* JSONPlaceholderRouter.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -361,8 +367,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E02A70DA1EF7C5D100809884 /* JSONPlaceholderRouter.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				E02A70DC1EF7DB6B00809884 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
