@@ -99,8 +99,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				E02A70DB1EF7DB6B00809884 /* Post.swift */,
-				E02A70D91EF7C5D100809884 /* JSONPlaceholderRouter.swift */,
+				E02A70DF1EF7DE9600809884 /* Model */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -152,6 +151,15 @@
 				991F469E9F30DFBDC262F8EA /* Pods_Swift_Http_Networking_Tests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E02A70DF1EF7DE9600809884 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E02A70DB1EF7DB6B00809884 /* Post.swift */,
+				E02A70D91EF7C5D100809884 /* JSONPlaceholderRouter.swift */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		EB25866073955192672BC2CB /* Pods */ = {

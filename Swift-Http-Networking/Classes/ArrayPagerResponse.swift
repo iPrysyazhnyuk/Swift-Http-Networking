@@ -13,7 +13,9 @@ struct ArrayPagerResponse<T: Mappable>: Mappable {
     var nextPage: String?
     var results: [T] = [T]()
     
-    init?(map: Map) { /* Needed for object mapper */ }
+    init?(map: Map) {
+        mapping(map: map)
+    }
     
     mutating func mapping(map: Map) {
         count           <- map["count"]

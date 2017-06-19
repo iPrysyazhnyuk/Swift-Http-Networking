@@ -19,10 +19,10 @@ class ViewController: UIViewController {
     }
     
     private func getPosts() {
-        HTTPRequest.makeWithDictionaryResponse(route: JSONPlaceholderRouter.posts, onSuccess: { (dict, statusCode) in
-            print(dict)
-        }) { (error, statusCode) in
-            print(error.localizedDescription)
+        HTTPRequest.make(route: JSONPlaceholderRouter.posts, onSuccess: { (arrayResponse: ArrayResponse<Post>) in
+            print(arrayResponse.array)
+        }) { (error) in
+            print(error)
         }
     }
     
