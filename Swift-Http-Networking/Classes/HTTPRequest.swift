@@ -46,7 +46,7 @@ public class HTTPRequest {
     }
     
     private static func callNoReponseError(onError: ((Error, _ statusCode: Int?) -> ())?) {
-        ResponseError(message: "No response".localized)
+        onError?(ResponseError(message: "No response".localized), nil)
     }
     
     private static func makeWithDictionaryResponseMultipart(url: String,
